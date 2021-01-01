@@ -1,0 +1,12 @@
+
+spring:
+  activemq:
+    broker-url: tcp://localhost:61616
+    packages:
+      trustAll: True
+
+routes:
+  providers:
+    switchOn: true
+  applicants:
+    checkerInterval: 100
