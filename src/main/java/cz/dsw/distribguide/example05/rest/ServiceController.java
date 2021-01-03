@@ -1,7 +1,7 @@
 package cz.dsw.distribguide.example05.rest;
 
-import cz.dsw.distribguide.example05.entity.Request;
-import cz.dsw.distribguide.example05.entity.Response;
+import cz.dsw.distribguide.example05.entity.*;
+
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.component.jms.JmsConstants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +48,4 @@ public class ServiceController {
             return ResponseEntity.notFound().build();
         }
     }
-
 }

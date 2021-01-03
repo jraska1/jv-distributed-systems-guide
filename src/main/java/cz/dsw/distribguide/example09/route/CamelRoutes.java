@@ -32,13 +32,11 @@ public class CamelRoutes extends RouteBuilder {
             .multicast()
                 .aggregationStrategy((oldExchange, newExchange) -> {
                     Exchange result;
-
                     List<ResponseBasis> list;
                     if (oldExchange != null) {
                         list = oldExchange.getIn().getBody(List.class);
                         result = oldExchange;
                     }
-                    
                     else {
                         list = new ArrayList<>();
                         result = newExchange;

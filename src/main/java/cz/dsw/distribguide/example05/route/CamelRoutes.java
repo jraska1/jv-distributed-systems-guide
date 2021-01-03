@@ -37,36 +37,26 @@ public class CamelRoutes extends RouteBuilder {
                 .aggregationStrategy(new GroupedBodyAggregationStrategy())
             .end();
 
-
 //      Provider Route definitions ...
         from("activemq:queue:QUEUE-1").routeId("provider01")
             .process(exchange -> {
                 Request request = exchange.getMessage().getBody(Request.class);
-                logger.info(">>> {}", request);
                 TimeUnit.MILLISECONDS.sleep(1500);
-                Response response = new Response("provider01", new Date(), request.getValue() + 10);
-                logger.info("<<< {}", response);
-                exchange.getMessage().setBody(response);
+                exchange.getMessage().setBody(new Response("provider01", new Date(), request.getValue() + 10));
             });
 
         from("activemq:queue:QUEUE-2").routeId("provider02")
             .process(exchange -> {
                 Request request = exchange.getMessage().getBody(Request.class);
-                logger.info(">>> {}", request);
                 TimeUnit.MILLISECONDS.sleep(500);
-                Response response = new Response("provider02", new Date(), (request.getValue() + 10) * 2);
-                logger.info("<<< {}", response);
-                exchange.getMessage().setBody(response);
+                exchange.getMessage().setBody(new Response("provider02", new Date(), (request.getValue() + 10) * 2));
             });
 
         from("activemq:queue:QUEUE-3").routeId("provider03")
             .process(exchange -> {
                 Request request = exchange.getMessage().getBody(Request.class);
-                logger.info(">>> {}", request);
                 TimeUnit.MILLISECONDS.sleep(2500);
-                Response response = new Response("provider03", new Date(), (request.getValue() + 50) * request.getValue());
-                logger.info("<<< {}", response);
-                exchange.getMessage().setBody(response);
+                exchange.getMessage().setBody(new Response("provider03", new Date(), (request.getValue() + 50) * request.getValue()));
             });
     }
 }

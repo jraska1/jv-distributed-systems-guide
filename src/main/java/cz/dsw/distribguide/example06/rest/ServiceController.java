@@ -1,7 +1,7 @@
 package cz.dsw.distribguide.example06.rest;
 
-import cz.dsw.distribguide.example06.entity.Request;
-import cz.dsw.distribguide.example06.entity.Response;
+import cz.dsw.distribguide.example06.entity.*;
+
 import org.apache.camel.ProducerTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
